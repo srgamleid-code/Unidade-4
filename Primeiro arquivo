@@ -1,4 +1,59 @@
+# Sistema simples de registro de clientes afiliados
+# Feito apenas para fins demonstrativos
 
-Arquivo de teste criado para controle de artefatos do projeto de software.
-Arquivo de teste criado para controle de artefatos do projeto de software.
-Arquivo de teste criado para controle de artefatos do projeto de software.
+afiliados = {}
+
+def cadastrar_afiliado(id, nome, email, cidade):
+    """Cadastra um novo afiliado"""
+    if id in afiliados:
+        print(f"⚠️ O afiliado com ID {id} já está cadastrado!")
+    else:
+        afiliados[id] = {
+            "nome": nome,
+            "email": email,
+            "cidade": cidade
+        }
+        print(f"✅ Afiliado '{nome}' cadastrado com sucesso!")
+
+def listar_afiliados():
+    """Lista todos os afiliados"""
+    if not afiliados:
+        print("📭 Nenhum afiliado cadastrado.")
+    else:
+        print("\n📋 Lista de Afiliados:")
+        for id, dados in afiliados.items():
+            print(f"ID: {id} | Nome: {dados['nome']} | E-mail: {dados['email']} | Cidade: {dados['cidade']}")
+
+def editar_afiliado(id, novo_nome=None, novo_email=None, nova_cidade=None):
+    """Edita dados de um afiliado existente"""
+    if id in afiliados:
+        if novo_nome:
+            afiliados[id]["nome"] = novo_nome
+        if novo_email:
+            afiliados[id]["email"] = novo_email
+        if nova_cidade:
+            afiliados[id]["cidade"] = nova_cidade
+        print(f"✏️ Dados do afiliado {id} atualizados com sucesso!")
+    else:
+        print(f"❌ Afiliado com ID {id} não encontrado.")
+
+def excluir_afiliado(id):
+    """Remove um afiliado do sistema"""
+    if id in afiliados:
+        del afiliados[id]
+        print(f"🗑️ Afiliado com ID {id} removido com sucesso!")
+    else:
+        print(f"❌ Afiliado com ID {id} não existe.")
+
+# Demonstração
+cadastrar_afiliado(1, "Carlos Silva", "carlos@email.com", "São Paulo")
+cadastrar_afiliado(2, "Ana Costa", "ana@email.com", "Belo Horizonte")
+
+listar_afiliados()
+
+editar_afiliado(1, novo_email="c.silva@email.com")
+listar_afiliados()
+
+excluir_afiliado(2)
+listar_afiliados()
+
