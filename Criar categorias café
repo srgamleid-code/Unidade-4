@@ -1,0 +1,46 @@
+# Sistema simples de cadastro de categorias de café
+# Feito apenas para fins demonstrativos
+
+# Dicionário que vai armazenar as categorias
+categorias_cafe = {}
+
+def adicionar_categoria(id, nome, descricao):
+    """Adiciona uma nova categoria de café"""
+    if id in categorias_cafe:
+        print(f"⚠️ Categoria com ID {id} já existe!")
+    else:
+        categorias_cafe[id] = {
+            "nome": nome,
+            "descricao": descricao
+        }
+        print(f " Categoria '{nome}' adicionada com sucesso!")
+
+def listar_categorias():
+    """Mostra todas as categorias cadastradas"""
+    if not categorias_cafe:
+        print("📭 Nenhuma categoria cadastrada.")
+    else:
+        print("\n📋 Categorias de Café:")
+        for id, dados in categorias_cafe.items():
+            print(f"ID: {id} | Nome: {dados['nome']} | Descrição: {dados['descricao']}")
+
+def editar_categoria(id, novo_nome, nova_descricao):
+    """Edita uma categoria existente"""
+    if id in categorias_cafe:
+        categorias_cafe[id]["nome"] = novo_nome
+        categorias_cafe[id]["descricao"] = nova_descricao
+        print(f"✏️ Categoria {id} atualizada!")
+    else:
+        print(f"❌ Categoria com ID {id} não encontrada.")
+
+def excluir_categoria(id):
+    """Exclui uma categoria"""
+    if id in categorias_cafe:
+        del categorias_cafe[id]
+        print(f"🗑️ Categoria {id} removida com sucesso!")
+    else:
+        print(f"❌ Categoria {id} não existe.")
+
+# Demonstração
+adicionar_categoria(1, "Café Arábica", "Grão de alta qualidade, sabor suave.")
+adicionar_categoria(2, "Café Robusta", "Grão forte e e_
